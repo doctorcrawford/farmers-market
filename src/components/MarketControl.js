@@ -67,28 +67,25 @@ class MarketControl extends React.Component {
 
   render() {
     let currentlyVisibleState = null;
-    let currentlyVisibleMarket = 1;
     let previousDayButton = null;
     let nextDayButton = null;
+    const previousDay = marketSchedule[this.state.marketVisibleOnPage - 1]
+    const selectedDay = marketSchedule[this.state.marketVisibleOnPage]
+    const nextDay = marketSchedule[this.state.marketVisibleOnPage + 1]
+    const market = <Market day={selectedDay.day}
+    location={selectedDay.location}
+    hours={selectedDay.hours}
+    booth={selectedDay.booth} />
     if (this.state.marketVisibleOnPage < 1) {
-      currentlyVisibleState = <Market day={marketSchedule[this.state.marketVisibleOnPage].day}
-      location={marketSchedule[this.state.marketVisibleOnPage].location}
-      hours={marketSchedule[this.state.marketVisibleOnPage].hours}
-      booth={marketSchedule[this.state.marketVisibleOnPage].booth} />
-      nextDayButton = <button onClick={this.handleClickIncrease}>Next Day</button>
+      currentlyVisibleState = market
+      nextDayButton = <button onClick={this.handleClickIncrease}>See {nextDay.day} schedule &#8594;</button>
     } else if (this.state.marketVisibleOnPage > 4) {
-      currentlyVisibleState = <Market day={marketSchedule[this.state.marketVisibleOnPage].day}
-      location={marketSchedule[this.state.marketVisibleOnPage].location}
-      hours={marketSchedule[this.state.marketVisibleOnPage].hours}
-      booth={marketSchedule[this.state.marketVisibleOnPage].booth} />
-      previousDayButton = <button onClick={this.handleClickDecrease}>Previous Day</button>
+      currentlyVisibleState = market
+      previousDayButton = <button onClick={this.handleClickDecrease}>&#8592; See {previousDay.day} schedule</button>
     } else {
-      currentlyVisibleState = <Market day={marketSchedule[this.state.marketVisibleOnPage].day}
-      location={marketSchedule[this.state.marketVisibleOnPage].location}
-      hours={marketSchedule[this.state.marketVisibleOnPage].hours}
-      booth={marketSchedule[this.state.marketVisibleOnPage].booth} />
-      nextDayButton = <button onClick={this.handleClickIncrease}>Next Day</button>
-      previousDayButton = <button onClick={this.handleClickDecrease}>Previous Day</button>
+      currentlyVisibleState = market
+      nextDayButton = <button onClick={this.handleClickIncrease}>See {nextDay.day} schedule &#8594;</button>
+      previousDayButton = <button onClick={this.handleClickDecrease}>&#8592; See {previousDay.day} schedule</button>
     }
     return (
       <>
