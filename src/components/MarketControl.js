@@ -62,7 +62,6 @@ class MarketControl extends React.Component {
     this.setState(prevState => ({
       marketVisibleOnPage: prevState.marketVisibleOnPage + 1
     }));
-    console.log(this.st)
   }
 
   render() {
@@ -87,6 +86,7 @@ class MarketControl extends React.Component {
       nextDayButton = <button onClick={this.handleClickIncrease}>See {nextDay.day} schedule &#8594;</button>
       previousDayButton = <button onClick={this.handleClickDecrease}>&#8592; See {previousDay.day} schedule</button>
     }
+
     return (
       <>
         {currentlyVisibleState}
